@@ -46,9 +46,9 @@ void modifierTache(Tache *taches, int nb_taches) {
 
     Tache *tache = &taches[index - 1];
     printf("Entrez le nouveau nom de la tâche : ");
-    scanf("%s", tache->nom);
+    scanf("%s", &tache->nom);
     printf("Entrez la nouvelle description de la tâche : ");
-    scanf("%s", tache->description);
+    scanf("%s", &tache->description);
     printf("Entrez la nouvelle priorité de la tâche (1-5) : ");
     scanf("%d", &tache->priorite);
 
