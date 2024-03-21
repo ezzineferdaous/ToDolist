@@ -157,7 +157,7 @@ int main() {
             default:
                 printf("Choix invalide ! Veuillez entrer un nombre entre 1 et 7.\n");
         }
-    } while (choix != 7);
+    } while (choix < 7);
 
     // Libération de la mémoire allouée
     free(taches);
