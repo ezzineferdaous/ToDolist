@@ -16,7 +16,7 @@ void ajouterTache(Tache **taches, int *nb_taches) {
     *taches = (Tache *)realloc(*taches, (*nb_taches) * sizeof(Tache));
     if (*taches == NULL) {
         printf("Erreur : échec d'allocation mémoire !\n");
-        exit(1);
+        exit(1);//error handlign
     }
 
     Tache nouvelle_tache;
@@ -26,11 +26,17 @@ void ajouterTache(Tache **taches, int *nb_taches) {
     scanf("%s", nouvelle_tache.description);
     printf("Entrez la priorité de la tâche (1-5) : ");
     scanf("%d", &nouvelle_tache.priorite);
-    nouvelle_tache.terminee = 0;
+    printf("enter 1 si la tache est terminer sinon 0(non terminer");
+    scanf("%d",&nouvelle_tache.terminee);
+
 
     (*taches)[*nb_taches - 1] = nouvelle_tache;
 
     printf("Tâche ajoutée avec succès !\n");
+
+
+
+
 }
 
 // Fonction pour mettre à jour une tâche
@@ -55,13 +61,14 @@ void modifierTache(Tache *taches, int nb_taches) {
     printf("Tâche mise à jour avec succès !\n");
 }
 
+
 // Fonction pour supprimer une tâche
 void supprimerTache(Tache **taches, int *nb_taches) {
     int index;
     printf("Entrez l'indice de la tâche à supprimer : ");
     scanf("%d", &index);
 
-    if (index < 1 || index > *nb_taches) {
+    if (index < 1 ||  index > *nb_taches) {
         printf("Erreur : indice de tâche invalide !\n");
         return;
     }
@@ -91,6 +98,7 @@ void marquerTacheCommeTerminee(Tache *taches, int nb_taches) {
 
     printf("Tâche marquée comme terminée !\n");
 }
+
 
 // Fonction pour filtrer les tâches par priorité
 void filtrerTachesParPriorite(Tache *taches, int nb_taches, int priorite) {
@@ -129,13 +137,13 @@ int main() {
 
         switch (choix) {
             case 1:
-                ajouterTache(&taches, &nb_taches);
+                ajouterTache(&taches, &nb_taches);//icomercial a cause de realloac par ce que en a reallouer la memoire
                 break;
             case 2:
                 modifierTache(taches, nb_taches);
                 break;
             case 3:
-                supprimerTache(&taches, &nb_taches);
+                supprimerTache(&taches, &nb_taches);//icomercial a cause de realloac par ce que en a reallouer la memoire
                 break;
             case 4:
                 marquerTacheCommeTerminee(taches, nb_taches);
@@ -157,10 +165,10 @@ int main() {
             default:
                 printf("Choix invalide ! Veuillez entrer un nombre entre 1 et 7.\n");
         }
-    } while (choix < 7);
+    } while (choix <7);
 
-    // Libération de la mémoire allouée
-    free(taches);
+    
+    free(taches);// Libération  mémoire 
 
     return 0;
 }
